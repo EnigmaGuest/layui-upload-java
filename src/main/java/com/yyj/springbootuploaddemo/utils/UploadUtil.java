@@ -25,7 +25,7 @@ public class UploadUtil {
         //判断目录是否存在
         if (!dir.exists()) {
             // 如果不存在，自动创建
-            dir.mkdir();
+            dir.mkdirs();
         }
         List<String> srcList = new ArrayList<>();
         //遍历文件数组,上传
@@ -52,8 +52,13 @@ public class UploadUtil {
         log.info("【文件上传】 dir.exists()={}",dir.exists());
         if (!dir.exists()) {
             // 如果不存在，自动创建
-            boolean t =  dir.mkdir();
-            log.info("【文件上传】 dir.mkdir()={}",t);
+            if (!dir.mkdir()){
+                dir.mkdirs();
+            }else {
+                dir.mkdir();
+            }
+
+
 
         }
         //上传文件名
